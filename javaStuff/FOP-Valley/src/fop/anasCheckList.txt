@@ -1,0 +1,11 @@
+1. Create prototype/skeleton of Fight class - DONE
+2. Improve Fight class lmao
+3. Implement damage formula: 
+ if (attack >= defense) {
+    damage = attack * 2 - defense;
+} else {
+    damage = attack * attack / defense;
+}
+4. Marry GUI and CLI together ??
+5. Fix the damn printing thingyy.
+6. Add like a typing animation when displaying text.
