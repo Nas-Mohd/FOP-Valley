@@ -59,6 +59,7 @@ public class Player extends Character {
             x = prevX;
             y = prevY;
         }
+        //limit the movement of character inside the frame only
         if (x < 0) {
             x = 0;
         } else if (x > game.gameScreenWidth - game.tilesize) {
