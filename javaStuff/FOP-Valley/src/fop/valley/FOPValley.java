@@ -17,10 +17,10 @@ public class FOPValley {
         // TODO code application logic here
         Entity player = new Entity("Anas");
         Entity monster = new Entity("FOP Slime boy");
+        Fight combat = new Fight(player);
         
-        Fight fight = new Fight (player, monster);
         
-        fight.initiateBattle(player, monster);
+        combat.initiateBattle(monster);
     }
     
 }

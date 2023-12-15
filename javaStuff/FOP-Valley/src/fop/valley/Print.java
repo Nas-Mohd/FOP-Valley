@@ -26,4 +26,16 @@ public class Print {
         System.out.println(separator);
     }
     
+    public static void printEffects (char type, Fight aThis, Entity doer) {
+        System.out.println("");
+        System.out.println("+---------------------------------------------+");
+        switch (type){
+            case '1':
+                System.out.println( doer.name + " has HIT for " + aThis.recentDamageDone + "!");
+                break;
+        }
+                
+    }
+
+
 }
