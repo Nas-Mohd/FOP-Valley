@@ -20,11 +20,11 @@ public class Fight {
     int recentDamageDone;
     int blockedAmount;
     Random rd = new Random();
-    ArrayList<Character> validInputs = new ArrayList<Character>() {{
-            add('1');
-            add('2');
-            add('3');
-            add('4');
+    ArrayList<String> validInputs = new ArrayList<String>() {{
+            add("Attack");
+            add("Defend");
+            add("Heal");
+            add("Escape");
         }};
  
         
@@ -53,7 +53,7 @@ public class Fight {
     // Prints out start of battle text
     private  void startOfBattleText(Entity encounter) {
         System.out.println("You have encountered a " + encounter.name + "!");
-        System.out.println("What will you do?");
+        System.out.println("You get ready to fight.");
     }
     
     // For user to choose whether to fight or to run away
@@ -87,48 +87,50 @@ public class Fight {
     
     
     // Get user action
-    private  char getUserAction(Entity User) {
+    private  String getUserAction(Entity User) {
         
         Scanner sc = new Scanner(System.in);
         Print.printChoices(player);
-        char input;
+        String input;
+        boolean isValid = false;
         do {
+            
             System.out.println("What do you choose to do?");
             System.out.print("Input: ");
-            input = sc.next().charAt(0);
-        } while (!validInputs.contains(input));
+            input = sc.nextLine();
+            
+            for (String action : validInputs){
+                if (action.equalsIgnoreCase(input))
+                    isValid = true;
+            }
+        } while (!isValid);
         return input;
     }
     
     // Get random action for enemy
-    private char getRandomAction(Entity Enemy) {
-        return '1';
+    private String getRandomAction(Entity Enemy) {
+        return "attack";
     }
     
     
     // After getting input execute action/spell
-    private void executeActionPlayer(char input, Entity receiver){
+    private void executeActionPlayer(String input, Entity receiver){
          recentDamageDone = rd.nextInt(1,11);
-        switch (input) {
-            case '1':
-                receiver.health -= recentDamageDone;
-                Print.printEffects(input, this, player);
-                break;
-            case '2':
-                blockedAmount = rd.nextInt(1,11);
-                Print.printEffects(input, this, player);
-                break;
+        if (input.equalsIgnoreCase("attack")){
+            receiver.health -= recentDamageDone;
+            Print.printEffects(input, this, player);
         }
+                
+            
     }
     
     // After getting random action execute action/spell
-    private void executeActionEnemy(char input, Entity receiver) {
+    private void executeActionEnemy(String input, Entity receiver) {
         recentDamageDone = rd.nextInt(1,11);
-        switch (input) {
-            case '1':
+        if (input.equalsIgnoreCase("attack")){
                 receiver.health -= recentDamageDone;
                 Print.printEffects(input, this, enemy);
-                break;
+                
                 
         }
     }
