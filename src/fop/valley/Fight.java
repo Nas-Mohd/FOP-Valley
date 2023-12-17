@@ -4,13 +4,17 @@
  */
 package fop.valley;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Random;
+=======
+>>>>>>> 1ebd2e3ca212fc6bdb1f7a67fda5bea583ea18c6
 import java.util.Scanner;
 
 /**
  *
  * @author Dummfak
+<<<<<<< HEAD
  * This class is all for the round based combat mechanics. This class is dependent on
  * the other classes such as Print, Entities, and Game.
  */
@@ -59,6 +63,38 @@ public class Fight {
     // For user to choose whether to fight or to run away
     private  boolean fightOrFlight() {
         Scanner keyboard = new Scanner(System.in);
+=======
+ */
+public class Fight {
+    Entity player;
+    Entity monster;
+    Scanner keyboard = new Scanner(System.in);
+    
+    public Fight (Entity playerInput, Entity monsterInput) {
+        player = playerInput;
+        monster = monsterInput;
+    }
+    
+    public Entity initiateBattle (Entity user, Entity enemy) {
+        Entity victor;
+        startOfBattleText(enemy);
+        boolean fight = fightOrFlight();
+        if (fight) {
+            System.out.println("You choose to fight");   
+        }
+        
+        
+        System.out.println("You have ran away!");
+        return user;
+    }
+    
+    private void startOfBattleText(Entity encounter) {
+        System.out.println("You have encountered a " + encounter.name + "!");
+        System.out.println("What will you do?");
+    }
+    
+    private boolean fightOrFlight() {
+>>>>>>> 1ebd2e3ca212fc6bdb1f7a67fda5bea583ea18c6
         int choice;
         System.out.println("1. Fight!");
         System.out.println("2. Run!");
@@ -69,6 +105,7 @@ public class Fight {
         return choice==1;
     }
     
+<<<<<<< HEAD
     
     // Combat method
     private  Entity combat () {
@@ -135,4 +172,6 @@ public class Fight {
         }
     }
     
+=======
+>>>>>>> 1ebd2e3ca212fc6bdb1f7a67fda5bea583ea18c6
 }
