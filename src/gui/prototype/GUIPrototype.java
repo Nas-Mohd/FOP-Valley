@@ -26,7 +26,7 @@ public class GUIPrototype {
     JFrame window;
     Container con;
     JPanel titleGamePanel,  commandLinePanel, mainTextPanel, textArtPanel, headingPanel;
-    JLabel headingLabel;
+    public JLabel headingLabel;
     public JTextArea commandLine, mainTextArea, textArtArea;
     JTextArea titleGameText;
     JScrollPane commandLineScroll;
@@ -50,7 +50,7 @@ public class GUIPrototype {
     }
     
     public GUIPrototype(){
-        
+        System.out.println("Starting Game");
         window = new JFrame();
         window.setSize(800, 800);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,10 +60,32 @@ public class GUIPrototype {
         con = window.getContentPane();
         
         titleGamePanel = new JPanel();
+        titleGameText = new JTextArea();
+        commandLinePanel = new JPanel();
+        commandLine = new JTextArea();
+        commandLineScroll = new JScrollPane(commandLine);
+        titleScreenHandler = new TitleScreenHandler(this);
+        
+        mainTextPanel = new JPanel();
+        mainTextArea = new JTextArea();
+        textArtPanel = new JPanel();
+        textArtArea = new JTextArea();
+        headingPanel = new JPanel();
+        headingLabel = new JLabel();
+        
+        startGame();
+        
+    }
+    
+    public void startGame() {
+
+        progress = "Start Game";
+
         titleGamePanel.setBounds(0,0,800,600);
         titleGamePanel.setBackground(Color.black);
+        titleGamePanel.setVisible(true);
         
-        titleGameText = new JTextArea();
+        
         titleGameText.setText("In Another World As A First Semester UM Computer Science Student: The Game");
         titleGameText.setBounds(25, 25, 775, 575);
         titleGameText.setFocusable(false);
@@ -73,14 +95,17 @@ public class GUIPrototype {
         titleGameText.setFont(titleFont);
         titleGameText.setLineWrap(true);
         titleGameText.setWrapStyleWord(true);
+        titleGameText.setVisible(true);
+        System.out.println("Initialized titleGameText");
         
         
-        commandLinePanel = new JPanel();
+        
         commandLinePanel.setBounds(0, 650, 800, 150);
         commandLinePanel.setBackground(Color.black);
+        commandLinePanel.setVisible(true);
         con.add(commandLinePanel);
         
-        commandLine = new JTextArea("Press ENTER to start");
+        commandLine.setText("Press ENTER to start");
         commandLine.setCaretPosition(commandLine.getText().length());
         commandLine.setBackground(Color.black);
         commandLine.setBounds(0, 650, 800, 150);
@@ -88,11 +113,12 @@ public class GUIPrototype {
         commandLine.setForeground(Color.white);
         commandLine.setLineWrap(true);
         commandLine.setFont(cliFont);
-        titleScreenHandler = new TitleScreenHandler(this);
+        commandLine.setVisible(true);
+
         commandLine.addKeyListener(titleScreenHandler);
         
         
-        commandLineScroll = new JScrollPane(commandLine);
+        
         
         
         commandLinePanel.add(commandLineScroll);
@@ -102,19 +128,18 @@ public class GUIPrototype {
         window.setVisible(true);
         Combat.setWindow(this);
         
-        
-        
     }
     
     public void createCharacterScreen(){
         
         progress = "Create Character";
-        mainTextPanel = new JPanel();
+        
         mainTextPanel.setBounds(25,125,500,475);
         mainTextPanel.setBackground(Color.black);
+        mainTextPanel.setVisible(true);
         con.add(mainTextPanel);
         
-        mainTextArea = new JTextArea();
+
         mainTextArea.setBounds(25,125,500,475);
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
@@ -122,30 +147,37 @@ public class GUIPrototype {
         mainTextArea.setLineWrap(true);
         mainTextArea.setWrapStyleWord(true);
         mainTextArea.setEditable(false);
+        mainTextArea.setVisible(true);
         mainTextPanel.add(mainTextArea);
         
-        textArtPanel = new JPanel();
+
         textArtPanel.setBounds(550, 150, 200, 450);
         textArtPanel.setBackground(Color.black);
+        textArtPanel.setVisible(true);
         con.add(textArtPanel);
         
-        textArtArea = new JTextArea("");
+
         textArtArea.setBounds(550,150,200,450);
         textArtArea.setBackground(Color.black);
         textArtArea.setForeground(Color.white);
         textArtArea.setFont(textArtFont);
         textArtArea.setLineWrap(true);
         textArtArea.setEditable(false);
+        textArtArea.setVisible(true);
+        textArtArea.setText(Print.getAsciiArt("book_ascii.txt"));
         textArtPanel.add(textArtArea);
         
-        headingPanel = new JPanel();
+
         headingPanel.setBounds(25, 25, 725, 75);
         headingPanel.setBackground(Color.black);
+        headingPanel.setVisible(true);
         con.add(headingPanel);
         
-        headingLabel = new JLabel("Choose Your Major");
+
         headingLabel.setForeground(Color.white);
         headingLabel.setFont(headingFont);
+        headingLabel.setVisible(true);
+        headingLabel.setText("Choose Your Major");
         headingPanel.add(headingLabel);
         
         mainTextArea.setText(Print.getMajors(this));
@@ -157,12 +189,10 @@ public class GUIPrototype {
     }
     
     public void titleToCreateCharacter() {
-        createCharacter++;
-        if (createCharacter == 1){
             titleGamePanel.setVisible(false);
             titleGameText.setVisible(false);
             createCharacterScreen();
-        }
+        
         
     }
     

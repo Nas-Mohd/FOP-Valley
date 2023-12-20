@@ -12,9 +12,9 @@ import gui.prototype.Reader;
  */
 public class Monster {
     
-    String ascii, name, desc;
+    public String ascii, name, desc;
     public int hp, mp, attack, defense, credits;
-    String[] attackDialogues;
+    public String[] attackDialogues;
     
     public void getStats (String monsterName) {
         String[] e = Reader.readMonsterFile(monsterName);

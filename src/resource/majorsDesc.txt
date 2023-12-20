@@ -26,10 +26,10 @@ Speels:
 2. Etherweb Shield (requires 15 credits)
 3. Firewall Enchantment (requires 30 credits)
 stats
-23
+34
 75
-20
-18
+99
+12
 Cascade Charm
 Etherweb Shield
 Firewall Enchantment

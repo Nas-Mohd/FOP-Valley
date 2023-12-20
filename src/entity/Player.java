@@ -56,7 +56,6 @@ public class Player extends Character {
         }
         if (keypress.down == true) {
             y += speed;
-            System.out.println("going down");
         }
         if (keypress.left == true) {
             x -= speed;

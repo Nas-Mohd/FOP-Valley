@@ -51,10 +51,7 @@ class TitleScreenHandler implements KeyListener {
         // Unused, but required by KeyListener interface
         if (e.getKeyCode() == KeyEvent.VK_ENTER && e.getSource() == window.commandLine && window.commandLine.isFocusOwner()) {
             press++;
-            System.out.println(press);
-            if (press == 1)
-
-                window.titleToCreateCharacter();
+            System.out.println(window.progress);
             
             if (!window.progress.equals("Map")) {
                 getRecentInput();
@@ -80,7 +77,7 @@ class TitleScreenHandler implements KeyListener {
         try {
             int length = document.getLength();
             recentInput = document.getText(2, length-3);
-            System.out.println(recentInput);
+            System.out.println(recentInput + " - oop?");
 
                 checkInput();
         } catch (BadLocationException e) {
@@ -92,7 +89,11 @@ class TitleScreenHandler implements KeyListener {
     
     public void checkInput(){
   
-        if (GUIPrototype.progress.equals("Choosing")){
+        if (window.progress.equals("Start Game"))
+            window.titleToCreateCharacter();
+
+                
+        else if (GUIPrototype.progress.equals("Choosing")){
             System.out.println("oop");
             if (recentInput.equals("y")){
                 System.out.println("hi");
@@ -160,25 +161,37 @@ class TitleScreenHandler implements KeyListener {
         else if (GUIPrototype.progress.equals("In Combat")) {
             if (recentInput.equalsIgnoreCase("attack") || recentInput.equals("1")) {
                 GUIPrototype.setProgress("Attacking");
-                Combat.playerAttacks();
-        }
-    }
-}
-
-class choiceHandler implements KeyListener {
-
-    @Override
-    public void keyTyped(KeyEvent e) {
+                Combat.playerAction(recentInput);
             }
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-    
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
+            else if (recentInput.equalsIgnoreCase("defend") || recentInput.equals("2") && Combat.defendCD == 0) {
+                GUIPrototype.setProgress("Defending");
+                Combat.playerAction(recentInput);
+            }
+            else if (recentInput.equalsIgnoreCase("heal") || recentInput.equals("3") && Combat.healCD == 0) {
+                GUIPrototype.setProgress("Healing");
+                Combat.playerAction(recentInput);
+            }
+            else if (recentInput.equalsIgnoreCase("run") || recentInput.equals("4")) {
+                GUIPrototype.setProgress("Running");
+                Combat.playerAction(recentInput);
+            }
+        }
+        else if (GUIPrototype.progress.equals("Displaying Effects") && recentInput.equals("")) {
+            GUIPrototype.setProgress("Displaying Monster");
+            Combat.enemyAttacks();
+        }
+        else if (GUIPrototype.progress.equals("Displaying Monster") && recentInput.equals("")) {
+            GUIPrototype.setProgress("In Combat");
+            Combat.startCombat();
+        }
         
-    }
-    
+        else if (window.progress.equals("Game Win") || window.progress.equals("Game Lose")) {
+                window.hideStuff();
+                window.startGame();
+            }
+        
 }
+}
+
+
+
