@@ -1,0 +1,21 @@
+sdas (Ignore parenthesis)
+dasda (act as though these are irrelevant lines)
+goblin (name of class)
+The Goblin is a creature of great ugliness. Bro is 4'6 and got no teeth. 12 year olds could probably beat one in a fight.
+10 (hp)
+0 (mp)
+6 (attack)
+2 (defense)
+1 (credit)
+has KICKED you in the face for (attack dialogue1)
+has pulled out a dagger and STABBED your big toe for (attack dialogue2)
+has clenched it's fist and PUNCHED you in the stomach for (attack dialogue3)
+smiled menacingly and SPAT in your face. Dealing (attack dialogue4)
+harpy (next monster)
+The Harpy is an amalgamation of bird and woman. It has the body of a woman yet covered in feathers. It also is very ugly
+321
+3214
+34
+123
+43
+(I will add monster name) flew 6 feet into the air. Then proceeded to do a flying kick, dealing ( I will add x dmg here)

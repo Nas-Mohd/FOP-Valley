@@ -2,17 +2,16 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fop.valley;
+package tile;
+
+import java.awt.image.BufferedImage;
 
 /**
  *
- * @author Dummfak
+ * @author ikmal
  */
-public class Game {
-    
-    public static void gameOver() {
-        System.out.println("You have died");
-        System.out.println("Try again?");
-    }
+class Tiletype {
+
+    public BufferedImage img;
     
 }
