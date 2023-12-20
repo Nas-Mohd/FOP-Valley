@@ -13,7 +13,7 @@ public class SeSpells {
     }
     static class AlgorithmicAlchemy extends Spell {
         public AlgorithmicAlchemy() {
-            super("Algorithmic Alchemy",15, "Unleashes a complex algorithmic barrier, evading incoming damage.", 5,10,2);
+            super("Algorithmic Alchemy",15, "Unleashes a complex algorithmic barrier, evading incoming damage.", 5,5,2);
         }
 
         public static void cast() {
@@ -23,7 +23,7 @@ public class SeSpells {
 
     static class LogicWeave extends Spell {
         public LogicWeave() {
-            super("Logic Weave",30, "Creates an intricate logic of magical energy to cause heavy damage.", 6,15,2);
+            super("Logic Weave",30, "Creates an intricate logic of magical energy to cause heavy damage.", 6,5,2.5);
         }
 
 
@@ -44,13 +44,13 @@ public class SeSpells {
         Spell selectedSpell = null;
         switch (spellChoice) {
             case 1:
-                selectedSpell = new spells.SeSpells.DebuggingDivination();
+                selectedSpell = new DebuggingDivination();
                 break;
             case 2:
-                selectedSpell = new spells.SeSpells.AlgorithmicAlchemy();
+                selectedSpell = new AlgorithmicAlchemy();
                 break;
             case 3:
-                selectedSpell = new spells.SeSpells.LogicWeave();
+                selectedSpell = new LogicWeave();
                 break;
             default:
                 System.out.println("Invalid spell choice.");

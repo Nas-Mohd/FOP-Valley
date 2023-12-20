@@ -13,7 +13,7 @@ public class CsnSpells {
     }
     static class EtherwebShield extends Spell {
         public EtherwebShield() {
-            super("Etherweb Shield",15, "Creates an impenetrable ether web shield, blocking incoming damage.", 5,10,2);
+            super("Etherweb Shield",15, "Creates an impenetrable ether web shield, blocking incoming damage.", 5,5,2);
         }
 
         public static void cast() {
@@ -23,7 +23,7 @@ public class CsnSpells {
 
     static class FirewallEnchantment extends Spell {
         public FirewallEnchantment() {
-            super("Firewall Enchantment",30, "Manifests a roaring firewall, causing solid damage to the target.", 6,15,2);
+            super("Firewall Enchantment",30, "Manifests a roaring firewall, causing solid damage to the target.", 6,5,2.5);
         }
 
 

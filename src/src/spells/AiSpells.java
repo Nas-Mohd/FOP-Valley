@@ -13,7 +13,7 @@ public class AiSpells {
     }
     static class CircuitEnchantment extends Spell {
         public CircuitEnchantment() {
-            super("Circuit Enchantment",15, "Engulfs enemy in an electrical surge, disrupting their abilities momentarily.", 5,10,2);
+            super("Circuit Enchantment",15, "Engulfs enemy in an electrical surge, disrupting their abilities momentarily.", 5,5,2);
         }
 
         public static void cast() {
@@ -23,7 +23,7 @@ public class AiSpells {
 
     static class QuantumDivination extends Spell {
         public QuantumDivination() {
-            super("Quantum Divination",30, "Foresees and counters incoming attacks with precision.", 6,15,2);
+            super("Quantum Divination",30, "Foresees and counters incoming attacks with precision.", 6,5,2.5);
         }
 
 
@@ -44,13 +44,13 @@ public class AiSpells {
         Spell selectedSpell = null;
         switch (spellChoice) {
             case 1:
-                selectedSpell = new spells.AiSpells.CyberneticSpellcraft();
+                selectedSpell = new CyberneticSpellcraft();
                 break;
             case 2:
-                selectedSpell = new spells.AiSpells.CircuitEnchantment();
+                selectedSpell = new CircuitEnchantment();
                 break;
             case 3:
-                selectedSpell = new spells.AiSpells.QuantumDivination();
+                selectedSpell = new QuantumDivination();
                 break;
             default:
                 System.out.println("Invalid spell choice.");

@@ -13,7 +13,7 @@ public class IsSpells {
     }
     static class AnalyticalAlchemy extends Spell {
         public AnalyticalAlchemy() {
-            super("Analytical Alchemy",15, "Unleashes a calculated surge, weakening enemy defenses.", 5,10,2);
+            super("Analytical Alchemy",15, "Unleashes a calculated surge, weakening enemy defenses.", 5,5,2);
         }
 
         public static void cast() {
@@ -23,7 +23,7 @@ public class IsSpells {
 
     static class PredictionEnchantment extends Spell {
         public PredictionEnchantment() {
-            super("Prediction Enchantment",30, "Predicts enemy actions, granting a preemptive advantage.", 6,15,2);
+            super("Prediction Enchantment",30, "Predicts enemy actions, granting a preemptive advantage.", 6,5,2.5);
         }
 
 
@@ -44,13 +44,13 @@ public class IsSpells {
         Spell selectedSpell = null;
         switch (spellChoice) {
             case 1:
-                selectedSpell = new spells.IsSpells.DatawaveDivination();
+                selectedSpell = new DatawaveDivination();
                 break;
             case 2:
-                selectedSpell = new spells.IsSpells.AnalyticalAlchemy();
+                selectedSpell = new AnalyticalAlchemy();
                 break;
             case 3:
-                selectedSpell = new spells.IsSpells.PredictionEnchantment();
+                selectedSpell = new PredictionEnchantment();
                 break;
             default:
                 System.out.println("Invalid spell choice.");

@@ -13,7 +13,7 @@ public class McSpells {
     }
     static class MultiRealmTransmute extends Spell {
         public MultiRealmTransmute() {
-            super("Multi Realm Transmute",15, "Manipulates the fabric of reality, disorienting the enemy.", 5,10,2);
+            super("Multi Realm Transmute",15, "Manipulates the fabric of reality, disorienting the enemy.", 5,5,2);
         }
 
         public static void cast() {
@@ -23,7 +23,7 @@ public class McSpells {
 
     static class SymphonySpellcraft extends Spell {
         public SymphonySpellcraft() {
-            super("Symphony Spellcraft",30, "Unleashes a symphony of magical resonance, dealing heavy damage to the target.", 6,15,2);
+            super("Symphony Spellcraft",30, "Unleashes a symphony of magical resonance, dealing heavy damage to the target.", 6,5,2.5);
         }
 
 
@@ -44,13 +44,13 @@ public class McSpells {
         Spell selectedSpell = null;
         switch (spellChoice) {
             case 1:
-                selectedSpell = new spells.McSpells.AudiovisualAlchemy();
+                selectedSpell = new AudiovisualAlchemy();
                 break;
             case 2:
-                selectedSpell = new spells.McSpells.MultiRealmTransmute();
+                selectedSpell = new MultiRealmTransmute();
                 break;
             case 3:
-                selectedSpell = new spells.McSpells.SymphonySpellcraft();
+                selectedSpell = new SymphonySpellcraft();
                 break;
             default:
                 System.out.println("Invalid spell choice.");
