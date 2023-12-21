@@ -12,7 +12,11 @@ import java.awt.Rectangle;
  */
 public class Character { 
 
-    public int x = 350;
-    public int y = 350;
+    public int x = 0;
+    public int y = 0;
     public int speed = 2;
+    public static Major chosenMajor;
+    public int hp, mp, attack, defense, credits;
+    public static String name;
+    
 }

@@ -1,0 +1,89 @@
+Computer System & Network
+Cascade Charm
+Enchants the target with a cascading charm, reducing their combat effectiveness by 20%
+status
+0.8
+5
+4
+
+Etherweb Shield
+Creates an impenetrable ether web shield, blocking incoming damage
+defend
+1.0
+15
+5
+
+Firewall Enchantment
+Manifests a roaring firewall, dealing 200% of your attack as damage
+attack
+2.0
+30
+6
+
+------------------------------------------------------------------------------------------------------------------------------------
+Software Engineering
+Debugging Divination
+- Credit Requirement: 5
+- Description: Harnesses ethereal energies to deal moderate damage.
+- Cool Down: 4 rounds
+
+Algorithmic Alchemy
+- Credit Requirement: 15
+- Description: Unleashes a complex algorithmic barrier, evading incoming damage.
+- Cool Down: 5 rounds
+
+Logic Weave
+- Credit Requirement: 30
+- Description: Creates an intricate logic of magical energy to cause heavy damage.
+- Cool Down: 6 rounds
+
+------------------------------------------------------------------------------------------------------------------------------------
+Multimedia Computing
+Audiovisual Alchemy
+- Credit Requirement: 5
+- Description: Conjures a dazzling array of audio and visual elements, nullifying incoming attacks.
+- Cool Down: 4 rounds
+
+Multi Realm Transmute
+- Credit Requirement: 15
+- Description: Manipulates the fabric of reality, disorienting the enemy.
+- Cool Down: 5 rounds
+
+Symphony Spellcraft
+- Credit Requirement: 30
+- Description: Unleashes a symphony of magical resonance, dealing heavy damage to the target.
+- Cool Down: 6 rounds
+
+------------------------------------------------------------------------------------------------------------------------------------
+Artificial Intelligence
+Cybernetic Spellcraft
+- Credit Requirement: 5
+- Description: Constructs a dynamic arcane barrier to block attacks.
+- Cool Down: 4 rounds
+
+Circuit Enchantment
+- Credit Requirement: 15
+- Description: Engulfs enemy in an electrical surge, disrupting their abilities momentarily.
+- Cool Down: 5 rounds
+
+Quantum Divination
+- Credit Requirement: 30
+- Description: Foresees and counters incoming attacks with precision.
+- Cool Down: 6 rounds
+
+------------------------------------------------------------------------------------------------------------------------------------
+Information Systems
+Datawave Divination
+- Credit Requirement: 5
+- Description: Channels data waves to evade attacks.
+- Cool Down: 4 rounds
+
+Analytical Alchemy
+- Credit Requirement: 15
+- Description: Unleashes a calculated surge, weakening enemy defenses.
+- Cool Down: 5 rounds
+
+Prediction Enchantment
+- Credit Requirement: 30
+- Description: Predicts enemy actions, granting a preemptive advantage.
+- Cool Down: 6 rounds

@@ -4,10 +4,11 @@
  */
 package tile;
 
+import entity.Goblin;
 import java.awt.Graphics;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import project.fop.ProjectFoP;
+import gui.prototype.ProjectFoP;
 
 /**
  *
@@ -44,6 +45,9 @@ public class Tile {
                 switch (tilemap[i][j]) {
                     case 0 -> {
                         g.drawImage(tile[0].img, game.tilesize * j, game.tilesize * i, game.tilesize, game.tilesize, null);
+                    }
+                    case 2 -> {
+                        g.drawImage(Goblin.img, game.tilesize * j, game.tilesize * i, game.tilesize, game.tilesize, null);
                     }
                 }//end switch
             }//end loop j

@@ -1,0 +1,36 @@
+jgjhhjg
+dsoiufosid
+ai
+Artificial Intelligence
+Specializes in attack or something
+Kill me right now
+Speels:
+1. Cybernetic Spellcraft (requires 5 credits)
+2. Circuit Enhancement (requires 10 credits)
+3. Quantum Divination (requires 15 credits)
+stats
+23
+50
+25
+13
+Cybernetic Spellcraft
+Circuit Enhancement
+Quantum Divination
+csn
+Computer Systems & Networks
+Specializes at building computers or something
+has high defense
+also Kill me right now
+Speels:
+1. Cascade Charm (requires 5 credits)
+2. Etherweb Shield (requires 15 credits)
+3. Firewall Enchantment (requires 30 credits)
+stats
+34
+75
+99
+12
+Cascade Charm
+Etherweb Shield
+Firewall Enchantment
+
