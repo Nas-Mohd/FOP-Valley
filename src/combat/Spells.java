@@ -14,8 +14,7 @@ public class Spells {
     
     public String name, desc, type;
     public double multiplier;
-    public int cd, credits, countdown;
-    public boolean inCooldown;
+    public int cd, credits, countdown, stat;
     
     public Spells(String s) {
         name = s;

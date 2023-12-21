@@ -4,11 +4,11 @@
  */
 package tile;
 
-import entity.Goblin;
+import entity.monsters.Goblin;
 import java.awt.Graphics;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import gui.prototype.ProjectFoP;
+import gui.prototype.Map;
 
 /**
  *
@@ -17,11 +17,11 @@ import gui.prototype.ProjectFoP;
 public class Tile {
 
     public boolean collision = false;
-    ProjectFoP game;
+    Map game;
     Tiletype[] tile;
 
     //constructor
-    public Tile(ProjectFoP game) {
+    public Tile(Map game) {
         this.game = game;
         tile = new Tiletype[2];
 

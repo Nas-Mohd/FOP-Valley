@@ -4,10 +4,10 @@
  */
 package combat;
 
-import entity.Goblin;
+import entity.monsters.Goblin;
 import entity.Monster;
 import entity.Player;
-import gui.prototype.GUIPrototype;
+import gui.prototype.Game;
 import gui.prototype.Print;
 import java.util.Random;
 
@@ -16,14 +16,14 @@ import java.util.Random;
  * @author Anas Mohammad 23055727
  */
 public class Combat {
-    static GUIPrototype window;
+    static Game window;
     static Goblin g;
     static Monster enemy;
     static Player player;
-    public static boolean isDefending;
+    public static boolean isDefending, isBlocking;
     public static int defendCD, healCD;
     
-    public static void setWindow (GUIPrototype e) {
+    public static void setWindow (Game e) {
         window = e;
     }
     
@@ -34,7 +34,7 @@ public class Combat {
         switch (monster) {
             case 2 -> {
                 monsterName = "goblin";
-                g = GUIPrototype.g;
+                g = Game.g;
                 enemy = g;
             }
             default -> {
@@ -42,7 +42,7 @@ public class Combat {
                 enemy = null;
             }
         }
-        GUIPrototype.setProgress("Starting Combat");
+        Game.setProgress("Starting Combat");
         window.hideMap();
         window.showStuff();
         Print.printMonsterEncounter(monsterName);
@@ -66,7 +66,7 @@ public class Combat {
     public static void playerAttacks() {
         int dmg, dif = player.attack - enemy.defense;
         Random rd = new Random();
-        GUIPrototype.setProgress("Attacking");
+        Game.setProgress("Attacking");
         if (dif < 1) {
             dmg = rd.nextInt(8);
         } else
@@ -85,6 +85,9 @@ public class Combat {
         else
             dmg = dif + rd.nextInt(6);
         
+        if (isBlocking) {
+            dmg = 0;
+        }
         player.hp -= dmg;
         
         if (isDefending) {
@@ -97,16 +100,25 @@ public class Combat {
     }
     
     public static void playerAction (String action) {
-        if (action.equalsIgnoreCase("attack") || action.equals("1")) {
+        if (Game.progress.equals("Attacking")) {
             playerAttacks();
-        } else if (action.equalsIgnoreCase("defend") || action.equals("2")) {
+        } else if (Game.progress.equals("Defending")) {
             playerDefends();
-        } else if (action.equalsIgnoreCase("heal") || action.equals("3")) {
+        } else if (Game.progress.equals("Healing")) {
             playerHeals();
-        } else if (action.equalsIgnoreCase("run") || action.equals("4")){
+        } else if (Game.progress.equals("Running")){
             playerRuns();
+        } else if (Game.progress.equals("Casting Spell")){
+            playerCastsSpell(action);
         }
         
+    }
+    
+    public static void playerCastsSpell(String name){
+        for (int i = 0; i < 2; i++)
+            if (Player.chosenMajor.availableSpells[i].name.equalsIgnoreCase(name) || Character.toString('a' + i).equalsIgnoreCase(name)){
+                castSpell(Player.chosenMajor.availableSpells[i]);
+            }
     }
     
     public static void playerDefends() {
@@ -135,9 +147,9 @@ public class Combat {
     public static void playerRuns() {
         Random rd = new Random();
         if (rd.nextBoolean())
-            GUIPrototype.setProgress("Running Failed");
+            Game.setProgress("Running Failed");
         else
-            GUIPrototype.setProgress("Running Success");
+            Game.setProgress("Running Successful");
         
         Print.displayEffects(0);
     }
@@ -153,6 +165,33 @@ public class Combat {
                 
     }
     
+    public static void castSpell(Spells spell) {
+        switch (spell.type) {
+            case "status" -> {
+                Game.setProgress("Status Spell");
+                enemy.attack = (int) (enemy.attack * spell.multiplier);
+                enemy.defense = (int) (enemy.defense * spell.multiplier);
+                spell.countdown = spell.cd;
+                Print.displayEffects((int)(spell.multiplier));
+            }
+            case "defend" -> {
+                Game.setProgress("Defend Spell");
+                isBlocking = true;
+                spell.countdown = spell.cd;
+                Print.displayEffects(0);
+            }
+            case "attack" -> {
+                Game.setProgress("Attack Spell");
+                spell.countdown = spell.cd;
+                int dmg = (int) (player.attack * spell.multiplier);
+                enemy.hp -= dmg;
+                spell.countdown = spell.cd;
+                Print.displayEffects(dmg);
+            }
+            default -> {
+            }
+        }
+    }
     
     
 }

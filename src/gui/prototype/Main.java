@@ -19,7 +19,7 @@ public class Main {
         main.setResizable(true);//Screnn can resize
         main.setTitle("Chillcoder RPG!!!!");
 
-        ProjectFoP game = new ProjectFoP();
+        Map game = new Map();
         main.add(game);
         main.pack(); //CAUSES FRAME TO FIT THE PREFERED SIZE
         main.setLocationRelativeTo(null); //Screen in the middle

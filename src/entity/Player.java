@@ -5,14 +5,14 @@
 package entity;
 
 import combat.Combat;
-import gui.prototype.GUIPrototype;
+import gui.prototype.Game;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import gui.prototype.Keypress;
 import gui.prototype.Print;
-import gui.prototype.ProjectFoP;
+import gui.prototype.Map;
 
 /**
  *
@@ -22,13 +22,13 @@ public class Player extends Character {
 
     public BufferedImage img;
 
-    ProjectFoP game;
+    Map game;
     Keypress keypress;
 
 
 
     //constructor
-    public Player(ProjectFoP game, Keypress keypress) {
+    public Player(Map game, Keypress keypress) {
         this.game = game;
         this.keypress = keypress;
         playerImage();
@@ -50,7 +50,7 @@ public class Player extends Character {
         int prevX = x;
         int prevY = y;
         
-        if (GUIPrototype.progress.equals("Map")) {
+        if (Game.progress.equals("Map")) {
         if (keypress.up == true) {
             y -= speed;
         }

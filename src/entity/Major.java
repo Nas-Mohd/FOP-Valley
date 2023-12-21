@@ -18,7 +18,7 @@ public class Major {
     public Spells[] availableSpells = new Spells[3];
     
     public Major (String s) {
-        ascii = Print.getAsciiArt(s +"_ascii.txt");
+        ascii = Print.getAsciiArt(s);
         getStats(s);
         
         

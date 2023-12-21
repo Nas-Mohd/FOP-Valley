@@ -1,7 +1,7 @@
 sdas (Ignore parenthesis)
 dasda (act as though these are irrelevant lines)
 goblin (name of class)
-The Goblin is a creature of great ugliness. Bro is 4'6 and got no teeth. 12 year olds could probably beat one in a fight.
+The Goblin is a creature of great ugliness. Bro is 4'6 and got no teeth. 12 year olds could probably beat one in a fight. (monster description)
 10 (hp)
 0 (mp)
 6 (attack)
