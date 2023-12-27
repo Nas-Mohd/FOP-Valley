@@ -56,19 +56,18 @@ class CommandLineInputHandler implements KeyListener {
         
         if (e.getKeyCode() == KeyEvent.VK_ENTER && e.getSource() == window.commandLine && window.commandLine.isFocusOwner()) {
             press++;
-            System.out.println(window.progress);
+            System.out.println(Game.progress + " - PROGRESS BEFORE GETTING USER INPUT");
             
-            if (!window.progress.equals("Map")) {
+            if (!Game.progress.equals("Map")) {
                 getRecentInput();
             }
             
             
-            
+            System.out.println(Game.progress + " - PROGRESS AFTER GETTING USER INPUT AND CHECKING");
         
             window.commandLine.setText("> ");
             window.commandLine.setCaretPosition(window.commandLine.getText().length());
             window.commandLine.setPreferredSize(new Dimension(800, 100));
-            //window.commandLine.setBounds(0, 650, 800, 150);
             
             
         }
@@ -93,11 +92,39 @@ class CommandLineInputHandler implements KeyListener {
     }
     
     public void checkInput(){
-  
-        if (window.progress.equals("Start Game"))
-            window.titleToCreateCharacter();
+        System.out.println(Game.progress + " - STRING USED FOR CHECKING");
+        if (Game.progress.equals("Start Game"))
+            window.titleToMenuScreen();
+        else if (Game.progress.equals("Menu Screen")) {
+            if (recentInput.equalsIgnoreCase("new game") || recentInput.equalsIgnoreCase("new") || recentInput.equals("1"))
+            window.createCharacterScreen();  
+            else if (recentInput.equalsIgnoreCase("help") || recentInput.equals("3")){
+                Print.showHelp();
+            }
+        }
+        else if (Game.progress.equals("Help Screen1")){
+            Print.showHelp1();
+        }
+        else if (Game.progress.equals("Help Screen")){
+            window.createMenuScreen();
+        }
 
+        else if (Game.progress.equalsIgnoreCase("Create Character")){
+                System.out.println("heard input during create character");
+            if (recentInput.equalsIgnoreCase("ai")) {
+                Print.showMajorsInfo(recentInput);
                 
+                Game.setProgress("Choosing");
+                window.setMajor("ai");
+            }
+            else if (recentInput.equalsIgnoreCase("csn")) {
+                Print.showMajorsInfo(recentInput);
+                
+                Game.setProgress("Choosing");
+                window.setMajor("csn");
+            }
+            System.out.println(Game.progress);
+        }              
         else if (Game.progress.equals("Choosing")){
             System.out.println("oop");
             if (recentInput.equals("y")){
@@ -117,25 +144,7 @@ class CommandLineInputHandler implements KeyListener {
                 
             }
         }
-        else if (Game.progress.equals("Create Character") && availableMajors.contains(recentInput) ){
-            if (recentInput.equalsIgnoreCase("ai")) {
-                Print.showMajorsInfo(recentInput);
-                
-                Game.setProgress("Choosing");
-                window.setMajor("ai");
-            }
-            else if (recentInput.equalsIgnoreCase("csn")) {
-                Print.showMajorsInfo(recentInput);
-                
-                Game.setProgress("Choosing");
-                window.setMajor("csn");
-            }
 
-            
-            
-            System.out.println(Game.progress);
-            
-        }
         
         else if (Game.progress.equals("Choosing Name")){
             if (recentInput.equals("")){
@@ -144,9 +153,25 @@ class CommandLineInputHandler implements KeyListener {
                 Game.setProgress("Choosing");
             } else {
             Player.setName(recentInput);
-            window.createMap();
-            Game.setProgress("Map");
+            //window.createMap();
+            window.createPlayer();
+            Print.showStory1();
             }
+        }
+        else if (Game.progress.equals("Story1")){
+            Print.showStory2();
+        }
+        else if (Game.progress.equals("Story2")){
+            Print.showStory3();
+        }
+        else if (Game.progress.equals("Story3")){
+            Print.showStory4();
+        }
+        else if (Game.progress.equals("Story4")){
+            Print.showStory();
+        }
+        else if (Game.progress.equals("Story")){
+            window.createMap();
         }
         
         else if (Game.progress.equals("Starting Combat")) {
@@ -155,6 +180,7 @@ class CommandLineInputHandler implements KeyListener {
                 Combat.startCombat();
                 Game.setProgress("In Combat");
             } else if (recentInput.equals("")) {
+                
                 window.hideStuff();
                 window.showMap();
                 window.textArtArea.setForeground(Color.white);
@@ -196,7 +222,7 @@ class CommandLineInputHandler implements KeyListener {
             Combat.startCombat();
         }
         
-        else if (window.progress.equals("Game Win") || window.progress.equals("Game Lose")) {
+        else if (Game.progress.equals("Game Win") || Game.progress.equals("Game Lose")) {
                 window.hideStuff();
                 window.startGame();
             }

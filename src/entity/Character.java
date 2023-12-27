@@ -16,7 +16,7 @@ public class Character {
     public int y = 0;
     public int speed = 2;
     public static Major chosenMajor;
-    public int hp, mp, attack, defense, credits;
+    public int hp, attack, defense, credits;
     public static String name;
     
 }

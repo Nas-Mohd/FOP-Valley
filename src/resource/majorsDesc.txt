@@ -6,15 +6,17 @@ Specializes in attack or something
 Kill me right now
 Speels:
 1. Cybernetic Spellcraft (requires 5 credits)
-2. Circuit Enhancement (requires 10 credits)
+2. Circuit Enchantment(requires 10 credits)
 3. Quantum Divination (requires 15 credits)
 stats
-23
-50
-25
-13
+30
+12
+8
+2
+5
+1
 Cybernetic Spellcraft
-Circuit Enhancement
+Circuit Enchantment
 Quantum Divination
 csn
 Computer Systems & Networks
@@ -26,10 +28,12 @@ Speels:
 2. Etherweb Shield (requires 15 credits)
 3. Firewall Enchantment (requires 30 credits)
 stats
-18
-75
-12
-12
+36
+9
+8
+2
+2
+4
 Cascade Charm
 Etherweb Shield
 Firewall Enchantment

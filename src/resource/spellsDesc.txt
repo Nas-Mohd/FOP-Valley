@@ -1,3 +1,26 @@
+Artificial Intelligence
+
+Cybernetic Spellcraft
+Engulfs the enemy in an electrical surge, disrupting their abilities momentarily by 20%
+status
+0.8
+5
+4
+
+Circuit Enchantment
+Constructs a dynamic arcane barrier, blocking incoming attacks
+defend
+1.0
+15
+5
+
+Quantum Divination
+Channels quantum energy to distort reality, inflicting 200% of your attack as attack
+attack
+2.0
+30
+6
+
 Computer System & Network
 
 Cascade Charm
@@ -8,14 +31,14 @@ status
 4
 
 Etherweb Shield
-Creates an impenetrable ether web shield, blocking incoming damage
+Creates an impenetrable ether web shield, blocking incoming attack
 defend
 1.0
 15
 5
 
 Firewall Enchantment
-Manifests a roaring firewall, dealing 200% of your attack as damage
+Manifests a roaring firewall, dealing 200% of your attack as attack
 attack
 2.0
 30
@@ -39,7 +62,7 @@ defend
 5
 
 Logic Weave
-Harmonizes intricate magical energy, inflicting 200% of your attack as heavy damage
+Harmonizes intricate magical energy, inflicting 200% of your attack as heavy attack
 attack
 2.0
 30
@@ -63,35 +86,14 @@ defend
 5
 
 Symphony Spellcraft
-Unleashes a symphony of magical resonance, dealing 200% of your attack as damage
+Unleashes a symphony of magical resonance, dealing 200% of your attack as attack
 attack
 2.0
 30
 6
 
 ------------------------------------------------------------------------------------------------------------------------------------
-Artificial Intelligence
 
-Cybernetic Spellcraft
-Engulfs the enemy in an electrical surge, disrupting their abilities momentarily by 20%
-status
-0.8
-5
-4
-
-Circuit Enchantment
-Constructs a dynamic arcane barrier, blocking incoming attacks
-defend
-1.0
-15
-5
-
-Quantum Divination
-Channels quantum energy to distort reality, inflicting 200% of your attack as damage
-attack
-2.0
-30
-6
 
 ------------------------------------------------------------------------------------------------------------------------------------
 Information Systems
@@ -111,7 +113,7 @@ defend
 5
 
 Prediction Enchantment
-Predicts and directs an onslaught, dealing 200% of your attack as targeted damage
+Predicts and directs an onslaught, dealing 200% of your attack as targeted attack
 attack
 2.0
 30

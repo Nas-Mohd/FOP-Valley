@@ -5,6 +5,7 @@
 package tile;
 
 import entity.monsters.Goblin;
+import entity.monsters.Harpy;
 import java.awt.Graphics;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -48,6 +49,9 @@ public class Tile {
                     }
                     case 2 -> {
                         g.drawImage(Goblin.img, game.tilesize * j, game.tilesize * i, game.tilesize, game.tilesize, null);
+                    }
+                    case 3-> {
+                        g.drawImage(Harpy.img, game.tilesize * j, game.tilesize * i, game.tilesize, game.tilesize, null);
                     }
                 }//end switch
             }//end loop j

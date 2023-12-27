@@ -16,7 +16,7 @@ import java.util.Scanner;
 public class Reader {
     
     public static String[] readMonsterFile(String monsterName) {
-        String[] monsterDesc = new String[10];
+        String[] monsterDesc = new String[9];
         try {
             Scanner reader = new Scanner(new FileInputStream(Paths.get("src/resource/monstersDesc.txt").toFile()));
             while(!reader.nextLine().equals(monsterName)){} // go through file until AFTER monster name
@@ -29,7 +29,6 @@ public class Reader {
             monsterDesc[6] = reader.nextLine(); // monster attack dialogue
             monsterDesc[7] = reader.nextLine(); // monster attack dialogue
             monsterDesc[8] = reader.nextLine(); // monster attack dialogue
-            monsterDesc[9] = reader.nextLine(); // monster attack dialogue
             reader.close();
             } catch (FileNotFoundException e) {
             System.out.println("File was not found"); 
@@ -40,7 +39,7 @@ public class Reader {
     }
     
     public static String[] readMajorsFile (String name) {
-        String[] majorDesc = new String[9];
+        String[] majorDesc = new String[11];
         try {
             Scanner reader = new Scanner(new FileInputStream(Paths.get("src/resource/majorsDesc.txt").toFile()));
             while(!reader.nextLine().equals(name)){} // go through file until AFTER major identifier
@@ -53,12 +52,14 @@ public class Reader {
                 majorDesc[1] = majorDesc[1] + "\n" + desc;
             }
             majorDesc[2] = reader.nextLine(); // major hp AS STRING
-            majorDesc[3] = reader.nextLine(); // major mp AS STRING
-            majorDesc[4] = reader.nextLine(); // major attack AS STRING
-            majorDesc[5] = reader.nextLine(); // major defense AS STRING
-            majorDesc[6] = reader.nextLine(); // major SpellName 1
-            majorDesc[7] = reader.nextLine(); // major SpellName 2
-            majorDesc[8] = reader.nextLine(); // major SpellName 3
+            majorDesc[3] = reader.nextLine(); // major attack AS STRING
+            majorDesc[4] = reader.nextLine(); // major defense AS STRING
+            majorDesc[5] = reader.nextLine(); // major hpScale AS STRING
+            majorDesc[6] = reader.nextLine(); // major atkScale AS STRING
+            majorDesc[7] = reader.nextLine(); // major defScale AS STRING
+            majorDesc[8] = reader.nextLine(); // major SpellName 1
+            majorDesc[9] = reader.nextLine(); // major SpellName 2
+            majorDesc[10] = reader.nextLine(); // major SpellName 3
             reader.close();
             } catch (FileNotFoundException e) {
             System.out.println("File was not found"); 
@@ -70,17 +71,38 @@ public class Reader {
         String[] spellDesc = new String[5];
         try {
             Scanner reader = new Scanner(new FileInputStream(Paths.get("src/resource/spellsDesc.txt").toFile()));
-            while(!reader.nextLine().equals(name)){} // go through file until AFTER spell identifier
-            spellDesc[0] = reader.nextLine(); // spell desc
-            spellDesc[1] = reader.nextLine(); // spell type
-            spellDesc[2] = reader.nextLine(); // spell multiplier AS STRING
-            spellDesc[3] = reader.nextLine(); // spell credit requirement AS STRING
-            spellDesc[4] = reader.nextLine(); // spell cooldown AS STRING
-            reader.close();
+            while (reader.hasNextLine()) {
+            String currentLine = reader.nextLine();
+            if (currentLine.equals(name)) {
+                // Found the desired spell, read the following lines
+                spellDesc[0] = reader.nextLine(); // spell desc
+                spellDesc[1] = reader.nextLine(); // spell type
+                spellDesc[2] = reader.nextLine(); // spell multiplier AS STRING
+                spellDesc[3] = reader.nextLine(); // spell credit requirement AS STRING
+                spellDesc[4] = reader.nextLine(); // spell cooldown AS STRING
+                break; // Exit the loop
+            }
+        }
+
             } catch (FileNotFoundException e) {
             System.out.println("File was not found"); 
             }
         return spellDesc;
+    }
+    
+    public static int[][] readMapFile(int x, int y){
+        int[][] map = new int[x][y];
+        try{
+            Scanner sc = new Scanner(new FileInputStream(Paths.get("src/resource/map.txt").toFile()));
+            for (int i = 0; i < x; i++)
+                for (int j = 0; j < y; j++)
+                    map[i][j] = sc.nextInt();
+        } catch (FileNotFoundException e){
+            System.out.println("File was not found");
+        }
+
+                
+        return map;
     }
     
 }

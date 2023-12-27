@@ -4,6 +4,8 @@
  */
 package entity;
 
+import gui.prototype.Game;
+import gui.prototype.Map;
 import gui.prototype.Reader;
 
 /**
@@ -12,21 +14,25 @@ import gui.prototype.Reader;
  */
 public class Monster {
     
+    public boolean isDead;
     public String ascii, name, desc;
-    public int hp, mp, attack, defense, credits;
+    public int hp, attack, defense, credits, X, Y;
     public String[] attackDialogues;
+    public Game game;
+    public Map map;
     
     public void getStats (String monsterName) {
         String[] e = Reader.readMonsterFile(monsterName);
         desc = e[0];
         hp = Integer.parseInt(e[1]);
-        mp = Integer.parseInt(e[2]);
-        attack = Integer.parseInt(e[3]);
-        defense = Integer.parseInt(e[4]);
-        credits = Integer.parseInt(e[5]);
-        attackDialogues = new String[]{e[6], e[7], e[8],e[9]};
+        attack = Integer.parseInt(e[2]);
+        defense = Integer.parseInt(e[3]);
+        credits = Integer.parseInt(e[4]);
+        attackDialogues = new String[]{e[5], e[6], e[7],e[8]};
     }
-    
+    public void despawn(){
+        map.tilemap[Y][X] = 1;
+    }
     public String getDesc() {
         return desc;
     }

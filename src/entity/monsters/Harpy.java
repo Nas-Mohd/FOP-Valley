@@ -1,8 +1,10 @@
+package entity.monsters;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package entity.monsters;
+
 
 import entity.Monster;
 import gui.prototype.Game;
@@ -13,39 +15,39 @@ import java.io.IOException;
 import java.util.Random;
 import javax.imageio.ImageIO;
 
+
 /**
  *
- * @author Anas Mohammad 23055727
+ * @author chris
  */
-public final class Goblin extends Monster{
+public class Harpy extends Monster{
     
     public static BufferedImage img;
     public static boolean hasSpawned;
     
     
-    public Goblin(Game e, Map f) {
+    public Harpy(Game e, Map f) {
         game = e;
         map = f;
-        goblinImage();      
-        ascii = Print.getAsciiArt("goblin");
-        name = "Ugly Goblin";
-        getStats("Goblin");
-        goblinSpawn();
+        harpyImage();      
+        ascii = Print.getAsciiArt("harpy");
+        name = "Smart Harpy";
+        getStats("Harpy");
+        harpySpawn();
     
     }
     
 
     
-    public void goblinImage() {
+    public void harpyImage() {
 
         try {
-            img = ImageIO.read(getClass().getResourceAsStream("/resource/goblin.png"));
+            img = ImageIO.read(getClass().getResourceAsStream("/resource/harpy.png"));
         } catch (IOException e) {
             System.out.println("Problem with image");
         }
-    
     }
-    public void goblinSpawn(){
+    public void harpySpawn(){
         while (!hasSpawned) {
             // Generate random coordinates for the skeleton's position
              Random rd = new Random();
@@ -53,11 +55,11 @@ public final class Goblin extends Monster{
              Y = rd.nextInt(40);
             // Check if the randomly chosen position is valid (not a solid tile)
             if (map.tilemap[Y][X] == 1) {
-                map.tilemap[Y][X] = 2;
+                map.tilemap[Y][X] = 3;
                 hasSpawned = true;
             }
         }
+    
     }
 
-    
 }

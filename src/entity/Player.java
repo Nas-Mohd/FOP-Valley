@@ -68,6 +68,7 @@ public class Player extends Character {
         if (isColliding(game.tilemap)) {
             // If a collision occurs, revert to the previous position
                         int monster = isCollidingWithMonster(game.tilemap);
+                        System.out.println(monster);
             
                 x = prevX;
                 y = prevY;
@@ -133,7 +134,7 @@ public class Player extends Character {
         for (int i = 0; i < tilemap.length; i++) {
             for (int j = 0; j < tilemap[0].length; j++) {
 
-                 if (tilemap[i][j] == 2) { //tilemap value 2 represents a goblin
+                 if (tilemap[i][j] > 1) { //tilemap value greater 1 represents a monster
                     int tileLeft = j * game.tilesize;
                     int tileRight = (j + 1) * game.tilesize;
                     int tileTop = i * game.tilesize;
@@ -161,7 +162,7 @@ public class Player extends Character {
     
     // set player name
     public static void setName(String s) {
-        name = s;
+        name = s.toUpperCase();
     }
     
     // set major/class
@@ -169,12 +170,16 @@ public class Player extends Character {
         System.out.println("Has Chosen major");
         chosenMajor = new Major(m);
         hp = chosenMajor.hp;
-        mp = chosenMajor.mp;
         attack = chosenMajor.attack;
         defense = chosenMajor.defense;
-        
+        credits = 0;
+    }
+
+    
+   public void levelUp () {
+        hp = chosenMajor.hp + ( credits * chosenMajor.hpScaling );
+        attack = chosenMajor.hp + ( credits * chosenMajor.atkScaling );
+        defense = chosenMajor.hp + ( credits * chosenMajor.defScaling );
         
     }
-    
-
 }

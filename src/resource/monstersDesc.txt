@@ -1,13 +1,60 @@
-sdas
-dasda 
-goblin
-The Goblin is a creature of great ugliness. Bro is 4'6 and got no teeth. 12 year olds could probably beat one in a fight.
-25
-0
+Goblin
+Goblins are small, pesky creatures that rely on sheer numbers to overpower their foes. They have no special abilities
+40
 10
-6
-1
+5
+30
  has KICKED you in the face for 
  has pulled out a dagger and STABBED your big toe for 
  has clenched it's fist and PUNCHED you in the stomach for 
- has smiled menacingly and SPAT in your face. Dealing 
+ smiled menacingly and SPAT in your face. Dealing 
+
+
+Skeleton
+Skeletons are reanimated undead, driven by malevolent intent. They have no unique abilities.
+60
+12
+7
+65
+ has KICKED you in the face for 
+ has pulled out a dagger and STABBED your big toe for 
+ has clenched it's fist and PUNCHED you in the stomach for 
+ smiled menacingly and SPAT in your face. Dealing 
+
+
+Witch
+Witches possess magical abilities, including the power to cast spells. Their main ability is to cast "Fireball," a potent fire-based magical attack.
+50
+8
+6
+70
+ has KICKED you in the face for 
+ has pulled out a dagger and STABBED your big toe for 
+ has clenched it's fist and PUNCHED you in the stomach for 
+ smiled menacingly and SPAT in your face. Dealing 
+
+
+Orc
+Orcs are hulking, brutish creatures known for their raw strength. They have no unique abilities.
+70
+15
+9
+75
+ has KICKED you in the face for 
+ has pulled out a dagger and STABBED your big toe for 
+ has clenched it's fist and PUNCHED you in the stomach for 
+ smiled menacingly and SPAT in your face. Dealing 
+
+
+Harpy
+Harpies are agile and cunning. They possess two abilities "Talon Strike," a physical attack, and "Wind Gust," a magical attack that can disrupt opponents.
+60
+14
+8
+82
+ has KICKED you in the face for 
+ has pulled out a dagger and STABBED your big toe for 
+ has clenched it's fist and PUNCHED you in the stomach for 
+ smiled menacingly and SPAT in your face. Dealing 
+
+
