@@ -2,6 +2,29 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/gui/prototype/SaveDB.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/monsters/Gnoll.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/monsters/Ogre.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/gui/prototype/Keypress.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/gui/prototype/Print.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/tile/Tile.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/combat/Combat.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/Character.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/gui/prototype/CommandLineInputHandler.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/monsters/Dragon.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/monsters/Witch.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/Monster.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/gui/prototype/Map.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/monsters/Skeleton.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/gui/prototype/Game.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/gui/prototype/Reader.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/combat/Spells.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/tile/TileType.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/Player.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/monsters/Goblin.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/Major.java</file>
+            <file>file:/C:/Users/LALAL-PC/Documents/NetBeansProjects/GUI%20Prototype/src/entity/monsters/Harpy.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -7,7 +7,12 @@ package gui.prototype;
 import combat.Combat;
 import entity.monsters.Goblin;
 import entity.Player;
+import entity.monsters.Dragon;
+import entity.monsters.Gnoll;
 import entity.monsters.Harpy;
+import entity.monsters.Ogre;
+import entity.monsters.Skeleton;
+import entity.monsters.Witch;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,6 +30,7 @@ import javax.swing.JTextPane;
  * @author Anas Mohammad 23055727
  */
 public class Game {
+
     
     public Map map;
     JFrame window;
@@ -36,22 +42,22 @@ public class Game {
     JTextArea titleGameText;
     JScrollPane commandLineScroll;
     Font titleFont = new Font("Times New Roman", Font.PLAIN, 96);
-    Font textFont = new Font("Sylfaen", Font.PLAIN, 20);
+
     Font cliFont = new Font ("Sylfaen", Font.PLAIN, 24);
     Font headingFont = new Font("Sylfaen", Font.BOLD, 52);
-    Font textArtFont = new Font("Monospaced", Font.PLAIN, 8);
-    Dimension a = new Dimension(500,475);
+    Dimension a = new Dimension(500,500);
     Dimension b = new Dimension(225,450);
     CommandLineInputHandler titleScreenHandler;
     static public String progress, major;
     public static Goblin goblin;
     public static Harpy harpy;
+    public static Gnoll gnoll;
+    public static Dragon dragon;
+    public static Witch witch;
+    public static Skeleton skeleton;
+    public static Ogre ogre;
     public static Player p;
-    public static boolean gameWon;
     
-    public enum State {
-        START_GAME, 
-    }
     /**
      * @param args the command line arguments
      */
@@ -94,7 +100,7 @@ public class Game {
         progress = "Start Game";
 
         titleGamePanel.setBounds(0,0,800,600);
-        titleGamePanel.setBackground(Color.black);
+        titleGamePanel.setBackground(Color.red);
         titleGamePanel.setVisible(true);
         
         
@@ -146,7 +152,7 @@ public class Game {
     public void createMenuScreen(){
         progress = "Menu Screen";
         
-        mainTextPanel.setBounds(25,125,500,475);
+        mainTextPanel.setBounds(25,125,500,500);
         mainTextPanel.setBackground(Color.black);
         mainTextPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         mainTextPanel.setVisible(true);
@@ -154,10 +160,10 @@ public class Game {
         con.add(mainTextPanel);
         
 
-        mainTextArea.setBounds(25,125,500,475);
+        mainTextArea.setBounds(25,125,500,500);
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
-        mainTextArea.setFont(textFont);
+
         mainTextArea.setPreferredSize(a);
         mainTextArea.setContentType("text/html");
         mainTextArea.setEditable(false);
@@ -176,7 +182,6 @@ public class Game {
         textArtArea.setBounds(525,150,225,450);
         textArtArea.setBackground(Color.black);
         textArtArea.setForeground(Color.white);
-        textArtArea.setFont(textArtFont);
         textArtArea.setPreferredSize(b);
         textArtArea.setContentType("text/html");
         //textArtArea.setLineWrap(true);
@@ -239,11 +244,18 @@ public class Game {
 
         goblin = new Goblin(this,map);
         harpy = new Harpy(this,map);
+        ogre = new Ogre(this,map);
+        gnoll = new Gnoll(this,map);
+        witch = new Witch(this,map);
+        dragon = new Dragon(this,map);
+        skeleton = new Skeleton(this,map);
         
         window.add(map);
         window.setVisible(true);
        
         map.thread();
+        
+        SaveDB.saveGame();
        
     }
     
@@ -252,7 +264,9 @@ public class Game {
     }
     
     public void showMap() {
+        
         map.setVisible(true);
+        SaveDB.saveGame();
         
     }
     
@@ -278,6 +292,11 @@ public class Game {
     public static void setPlayer(Player x) {
         p = x;
         p.setMajor(major);
+        Combat.defendCD = 0;
+        Combat.healCD = 0;
+        for (int i = 0; i < 3; i ++)
+            Player.chosenMajor.availableSpells[i].countdown = 0;
+        
         CommandLineInputHandler.setPlayer(x);
     }
     
@@ -287,15 +306,60 @@ public class Game {
     
     public void chooseName(){
         headingLabel.setText("Please Enter a Name");
-        String nameText = "Type your character's name in the command line and hit ENTER"
-                + "\nOr just hit <b>ENTER</b> to go back";
+        String nameText = """
+                          Type your character's name in the command line and hit ENTER
+                          Or just hit <b>ENTER</b> to go back""";
         mainTextArea.setText(Print.wrapWithHTML(nameText));
     }
     
-    public static void checkWin(){
-        if (goblin.isDead)
-            if( harpy.isDead)
-                gameWon=true;
+    public static boolean gameWon(){
+        boolean gameWon = false;
+        if (goblin.isDead && harpy.isDead && skeleton.isDead && dragon.isDead && ogre.isDead && witch.isDead && gnoll.isDead)
+            gameWon = true;
+        return gameWon;
+    }
+    
+    public static int getMonsterX(String name){
+        int x = 0;
+        switch (name){
+            case "goblin" -> x = goblin.X;
+            case "harpy" -> x = harpy.X;
+            case "ogre" -> x = ogre.X;
+            case "skeleton" -> x = skeleton.X;
+            case "gnoll" -> x = gnoll.X;
+            case "witch" -> x = witch.X;
+            case "dragon" -> x = dragon.X;
+            default->{}
+        }
+        return x;
+    }
+    public static int getMonsterY(String name){
+        int y = 0;
+        switch (name){
+            case "goblin" -> y = goblin.Y;
+            case "harpy" -> y = harpy.Y;
+            case "ogre" -> y = ogre.Y;
+            case "skeleton" -> y = skeleton.Y;
+            case "gnoll" -> y = gnoll.Y;
+            case "witch" -> y = witch.Y;
+            case "dragon" -> y = dragon.Y;
+            default->{}
+        }
+        return y;
+    }
+    public static boolean isMonsterDead(String name){
+        boolean y = false;
+        switch (name){
+            case "goblin" -> y = goblin.isDead;
+            case "harpy" -> y = harpy.isDead;
+            case "ogre" -> y = ogre.isDead;
+            case "skeleton" -> y = skeleton.isDead;
+            case "gnoll" -> y = gnoll.isDead;
+            case "witch" -> y = witch.isDead;
+            case "dragon" -> y = dragon.isDead;
+            default->{}
+        }
+        return y;
     }
 }
 

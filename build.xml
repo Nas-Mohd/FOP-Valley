@@ -7,9 +7,27 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="FOP-Valley" default="default" basedir=".">
+
+<project xmlns:ivy="antlib:org.apache.ivy.ant" name="GUI Prototype" default="default" basedir=".">
     <description>Builds, tests, and runs the project FOP-Valley.</description>
     <import file="nbproject/build-impl.xml"/>
+<!--
+    <taskdef resource="org/apache/ivy/ant/antlib.xml"
+         uri="antlib:org.apache.ivy.ant" classpath="C:\Users\LALAL-PC\Documents\NetBeansProjects\GUI Prototype\lib\ivy-2.5.2.jar" />
+<target name="resolve" description="Retrieve dependencies with Ivy">
+    <ivy:resolve />
+</target>
+<target name="init" depends="resolve" description="Initialize project">
+    <ivy:cachepath pathid="libs.classpath" />
+</target>
+<target name="compile" depends="init">
+    <javac srcdir="${src.dir}" destdir="${build.<target name="compile" depends="init,resolve"/>
+    <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="libs.classpath"/>
+</target>
+classes.dir}" classpathref="libs.classpath"/>
+</target>-->
+
+
     <!--
 
     There exist several targets which are by default empty and which can be 
@@ -58,7 +76,7 @@
 
     An example of overriding the target for project execution could look like this:
 
-        <target name="run" depends="FOP-Valley-impl.jar">
+        <target name="run" depends="GUI_Prototype-impl.jar">
             <exec dir="bin" executable="launcher.exe">
                 <arg file="${dist.jar}"/>
             </exec>

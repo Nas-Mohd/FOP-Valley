@@ -24,10 +24,13 @@ public final class Goblin extends Monster{
     
     
     public Goblin(Game e, Map f) {
+        hasSpawned = false;
+        isDead = false;
         game = e;
         map = f;
+        id = "goblin";
         goblinImage();      
-        ascii = Print.getAsciiArt("goblin");
+        ascii = Print.getAsciiArt(id);
         name = "Ugly Goblin";
         getStats("Goblin");
         goblinSpawn();

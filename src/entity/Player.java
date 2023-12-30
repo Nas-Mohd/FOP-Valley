@@ -24,6 +24,7 @@ public class Player extends Character {
 
     Map game;
     Keypress keypress;
+    public int id;
 
 
 
@@ -31,6 +32,7 @@ public class Player extends Character {
     public Player(Map game, Keypress keypress) {
         this.game = game;
         this.keypress = keypress;
+        id = -1;
         playerImage();
         Print.setPlayer(this);
         
@@ -178,8 +180,12 @@ public class Player extends Character {
     
    public void levelUp () {
         hp = chosenMajor.hp + ( credits * chosenMajor.hpScaling );
-        attack = chosenMajor.hp + ( credits * chosenMajor.atkScaling );
-        defense = chosenMajor.hp + ( credits * chosenMajor.defScaling );
+        attack = chosenMajor.attack + ( credits * chosenMajor.atkScaling );
+        defense = chosenMajor.defense + ( credits * chosenMajor.defScaling );
         
     }
+   
+   public void setId (int x){
+       id = x;
+   }
 }

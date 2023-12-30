@@ -27,10 +27,13 @@ public class Harpy extends Monster{
     
     
     public Harpy(Game e, Map f) {
+        hasSpawned = false;
+        isDead = false;
         game = e;
         map = f;
+        id = "harpy";
         harpyImage();      
-        ascii = Print.getAsciiArt("harpy");
+        ascii = Print.getAsciiArt(id);
         name = "Smart Harpy";
         getStats("Harpy");
         harpySpawn();

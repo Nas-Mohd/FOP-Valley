@@ -36,8 +36,12 @@ public class Print {
     }
     
     public static String getMajors(){
-        String majors = "| Artificial Intelligence (<span style='color: lime;'>AI</span>)\n"
-                + "| Computer Systems & Network(<span style='color: lime;'>CSN</span>)";
+        String majors = """
+                        | Artificial Intelligence (<span style='color: lime;'>AI</span>)
+                        | Computer System & Network (<span style='color: lime;'>CSN</span>);
+                        | Software Engineering (<span style='color: lime;'>SE</span>);
+                        | Multimedia Computing (<span style='color: lime;'>MMC</span>);
+                        | Information Systems (<span style='color: lime;'>IS</span>)""";
         majors = wrapWithHTML(majors);
         return majors;
     }
@@ -57,10 +61,21 @@ public class Print {
     public static void showHelp(){
         Game.setProgress("Help Screen1");
         heading = "Controls";
-        mainText = wrapWithHTML("Text that are <span style='color: green;'>GREEN</span> are used to highlight words you can input in the CLI below.\n"
-                + "Text that are <span style='color: red;'>RED</span> are used to highlight either unlockable choices or choices that are on cooldown.\n"
-                + "\n\nHit <b>ENTER</b> to go next.\n\n\n\n"
-                + "Command Line Interface (CLI)\n<pre'> |\n |\n |\n |\n\\/\n</pre>");
+        mainText = wrapWithHTML("""
+                                Text that are <span style='color: green;'>GREEN</span> are used to highlight words you can input in the CLI below.
+                                Text that are <span style='color: red;'>RED</span> are used to highlight either unlockable choices or choices that are on cooldown.
+                                
+                                In the MAP, use <b>W</b>,<b>A</b>,<b>S</b>,<b>D</b> to move your character <b>up</b>, <b>left</b>, <b>down</b> and <b>right</b> respectively.
+                                
+                                Hit <b>ENTER</b> to go next.
+                                
+                                Command Line Interface (CLI)
+                                <pre'> |
+                                 |
+                                 |
+                                 |
+                                \\/
+                                </pre>""");
         textArt = getAsciiArt("help");
         
         printDisplay();
@@ -96,11 +111,11 @@ public class Print {
     public static void showStory1(){
         Game.setProgress("Story1");
         heading = "Backstory";
-        mainText = "It is November of the year 2027. " + Player.name + " is a " + Player.chosenMajor.name + " final-year student who has just submitted all their requirements. "
+        mainText = "It's November 2027 and " + Player.name + " is a " + Player.chosenMajor.name + " final-year student who has just submitted all their requirements. "
                 + "You are finally done with the final finals, the last group assignments, your internships and ready to enter the next chapter of your life. "
                 +"<br>You look back to all the ups and downs you faced during your uni life. Like the time you overslept and missed one of your exams so they had to beg/bribe the lecturer. "
                 + "Or that one time you and your friends went on a roadtrip and had so much fun. You even look back to your first year, where you had to go through the Week Of Welcome."
-                + " Waking up 7:00 AM everyday for a week, at the time you just wanted it to end but now you kind of miss it. Oh, and FOP, you are still shocked that you managed to pass that course. <span style='color:blue;'>;-;</span>\n"
+                + " Waking up 7:00 AM everyday for a week, at the time you just wanted it to end but now you kind of miss it. Oh, and FOP, you are still shocked that you managed to pass that course. <span style='color:blue;'>( •̯́ ^ •̯̀)( •̯́ ₃ •̯̀)</span>\n"
                 + enter;
         mainText = wrapWithHTML(mainText);
         textArt = getAsciiArt("story1");
@@ -166,13 +181,10 @@ public class Print {
     
     public static void printMonsterEncounter(String monsterName, Monster m){
         enemy = m;
-        heading = "You have encountered a " + monsterName;
-        //if (monsterName.equals("goblin")){
-            mainText = Combat.enemy.getDesc() + "\nType \"<span style='color: lime;'>FIGHT</span>\" to initiate combat \nHit <b>ENTER</b> to go back";
+        heading = monsterName.toUpperCase() + " ENCOUNTERED";
+            mainText = Combat.enemy.getDesc() + "\nType \"<span style='color: lime;'>FIGHT</span>\" OR \"<span style='color:lime;'>1</span>\" to initiate combat \nHit <b>ENTER</b> to go back";
             mainText = wrapWithHTML(mainText);
             textArt = Combat.enemy.getAscii();
-            window.textArtArea.setForeground(Color.green);
-       // }
         printDisplay();
     }
     
@@ -255,21 +267,28 @@ public class Print {
         else if (Game.progress.equals("Attack Spell")) {
                 for (int i = 0; i < 3; i++)
                     if (Player.chosenMajor.availableSpells[i].type.equalsIgnoreCase("attack")){
-                        mainText = "You cast " + Player.chosenMajor.availableSpells[i].name + ". Damaging your opponent greatly. You have DEALT " + value + " dmg!";
+                        mainText = "You CAST " + Player.chosenMajor.availableSpells[i].name + ". Damaging your opponent greatly. You have DEALT " + value + " dmg!";
                         System.out.println("heard attack2");
                     }
                         
                 }            
         else if (Game.progress.equals("Status Spell")) {
                 for (int i = 0; i < 3; i++)
-                    if (Player.chosenMajor.availableSpells[i].type.equalsIgnoreCase("status"))
-                        mainText = "You cast " + Player.chosenMajor.availableSpells[i].name + ". You lower your opponent's power and stats!";
+                    if (Player.chosenMajor.availableSpells[i].type.equalsIgnoreCase("status") && Player.chosenMajor.availableSpells[i].multiplier < 1)
+                        mainText = "You CAST " + Player.chosenMajor.availableSpells[i].name + ". You lower your opponent's power and stats!";
+                    else if (Player.chosenMajor.availableSpells[i].type.equalsIgnoreCase("status") && Player.chosenMajor.availableSpells[i].multiplier > 1)
+                        mainText = "You CAST " + Player.chosenMajor.availableSpells[i].name + ". You raise your own power! You are now stronger than before.";
                 }            
         else if (Game.progress.equals("Defend Spell")) {
                 for (int i = 0; i < 3; i++)
                     if (Player.chosenMajor.availableSpells[i].type.equalsIgnoreCase("defend"))
-                        mainText = "You cast " + Player.chosenMajor.availableSpells[i].name + ". Which will completely nullify your enemy's next attack!";
-                }            
+                        mainText = "You CAST " + Player.chosenMajor.availableSpells[i].name + ". Which will completely nullify your enemy's next attack!";
+                }
+        else if (Game.progress.equals("Heal Spell")){
+            for (int i = 0; i< 3; i++)
+                if (Player.chosenMajor.availableSpells[i].type.equalsIgnoreCase("heal"))
+                    mainText = "You CAST " + Player.chosenMajor.availableSpells[i].name + ".\n" + Player.chosenMajor.availableSpells[i].desc + "\n You were HEALED you for " + value + " HP.";
+        }
         
         if (Game.progress.equals("Running Successful")){
         } else {
@@ -302,18 +321,18 @@ public class Print {
         Combat.reduceCD();
         printDisplay();
     }
-    
-    
-    public static void gameWin() {
-        heading = "YOU WIN!";
-        window.headingLabel.setForeground(Color.green);
-        window.textArtArea.setForeground(Color.yellow);
-        mainText = wrapWithHTML("You have defeated all the monsters and took back all of your college credits !");
-        textArt = getAsciiArt("win");
-        Game.setProgress("Game Win");
+    public static void levelUp(Monster enemy){
+        heading = "Level Up!";
+        mainText = "You have slain " + enemy.name + ". You retrieve what's rightfully yours and gain " + enemy.credits + " CREDITS.\n"
+                + "You start to feel more big brain. You gain +" + (enemy.credits*Player.chosenMajor.hpScaling) + " HP, +" + (enemy.credits*Player.chosenMajor.atkScaling) + " ATK, and +" + (enemy.credits*Player.chosenMajor.defScaling) + " DEF."
+                + "You are now one step closer to going back to your world and graduating, Yipee!! (◕‿◕)\n" +enter;
+        textArt = getAsciiArt("credit");
+        mainText = wrapWithHTML(mainText);
+        
         
         printDisplay();
     }
+    
     
     public static void gameLose() {
         heading = "GAME OVER";
@@ -325,6 +344,105 @@ public class Print {
         
         printDisplay();
                 
+    }
+    public static void epilogue0(Monster enemy){
+        heading = "Max Level Reached!";
+        mainText = "You have slain " + enemy.name + ".\nYou retrieve what's rightfully yours and gain " + enemy.credits + " CREDITS.\n"
+                + "You have gotten back ALL of 182 Credits you needed to graduate. You gain +" + (enemy.credits*Player.chosenMajor.hpScaling) + " HP, +" + (enemy.credits*Player.chosenMajor.atkScaling) + " ATK, and +" + (enemy.credits*Player.chosenMajor.defScaling) + " DEF."
+                + "You are now able to go back to your world and graduate, Yipee!! (◕‿◕)\n" +enter;
+        textArt = getAsciiArt("credit");
+        mainText = wrapWithHTML(mainText);
+        Game.setProgress("Epilogue0");
+        
+        
+        printDisplay();
+        
+    }
+    public static void epilogue1() {
+        heading = "UNKNOWN ENCOUNTERED";
+        mainText = wrapWithHTML("""
+                   After taking back all of your College Credits, the clouds part and something descends from the sky. A being of immense pressure and power has appeared in front of you.
+                   You are shaken to your core by the sheer presence of this creature of absurdity in front of you. You get ready to possibly fight this creature.
+                   <b> BUT THEN... </b>""" + enter);
+        textArt = getAsciiArt("epilogue");
+        Game.setProgress("Epilogue1");
+        
+        printDisplay();
+    }
+    
+    public static void epilogue2(){
+        heading = "JOE MAMA ENCOUNTERED";
+        mainText = wrapWithHTML("""
+                   The being that inspired so much fear in you suddenly changed form. \"Hi\" <b>≽^•⩊•^≼</b>, the being turned out to be <b>Joe Mama</b>, The Caretaker of this world. 
+                   "Great work... """ + Player.name + """
+                                                      . I can now send you back" said <b>Joe Mama</b>. "However if I do send you back, you will lose all your super powers lmao. Do you still want to go back?" 
+                                                    Type <span style ='color:lime;'><b>YES</b></span> to go back to your world.
+                                                    Type <span style ='color:red;'><b>NO</b></span> to refuse the offer.""");
+        textArt = getAsciiArt("Story4");
+        Game.setProgress("Epilogue2");
+        
+        printDisplay();
+    }
+    
+    public static void epilogue3y(){
+        heading = "Offer Accepted";
+        window.headingLabel.setForeground(Color.green);
+        mainText = wrapWithHTML("""
+                                You accept the offer and a portal manifests underneath your feet. You fall through the portal.
+                                "Also", said <b>Joe Mama</b> "Congrats on graduating!" <br>(￣ー￣)ｂ<br> You leave this world the same way you arrived, falling through a void of darkness and emptiness for what will seem like an eternity.
+                                """ + enter);
+        textArt = getAsciiArt("Epilogue3y");
+        Game.setProgress("Epilogue3");
+        
+        printDisplay();
+    }
+    public static void epilogue3n(){
+        heading = "Offer Declined";
+        window.headingLabel.setForeground(Color.red);
+        mainText = wrapWithHTML("""
+                                 You decline the offer. "Well you don't really have a choice lmao, the people coding this game just want to be done with it lmao" said <b>Joe Mama</b>.
+                                 A portal suddenly manifests underneath your feet and you fall through this portal. <i>It's almost like what you chose didn't even matter</i>.""" + enter);
+        textArt = getAsciiArt("Epilogue3n");
+        Game.setProgress("Epilogue3");
+        
+        printDisplay();
+    }
+    public static void epilogue4(){
+        window.headingLabel.setForeground(Color.white);
+        heading = "The End";
+        mainText = wrapWithHTML("""
+                                While going through the portal, you are suddenly awoken by the sound of your mother's voice "Hey, wake up we arrived at Dewan Tunku Canselor".
+                                You think to yourself whether you were just dreaming this whole time...
+                                
+                                <b><span style =' color: lime;'>YOU WIN</span></b>""" + enter);
+        Game.setProgress("Game Win");
+        textArt = getAsciiArt("Epilogue4");
+        
+        printDisplay();
+    }
+    
+    public static void credits(){
+        heading = "CREDITS";
+        mainText = wrapWithHTML("""
+                                <span style='font-size:24pt;'><b>Created by:</b> ChillCoders (▔▀ ‿ ▀ )ლ ▂▂⌇</span>
+                                <span style='font-size:12pt;'><i> In partial fulfillment of WIX1002 Fundamentals of Programming</i></span>
+                                <pre style='font-size:18pt;'><b>Members:</b> Anas Mohammad
+                                         Muhammad Ikhmal Izahan
+                                         Christine Leow Si Ting
+                                         Saad Ahmed Pathan
+                                         Raisha Haque
+                                
+                                <b>Resources:</b> Google Images (for entity sprites)
+                                           emojicombos.com (ASCII Art)
+                                           Text-Image.com (Image to ASCII
+                                           converter)
+                                           RyiSnow Youtube Channel (Making a
+                                           game in Java playlist)</pre>
+                                <b>Special Thanks To:</b> (シ_ _ )シ .°˖✧<b>Chat-GPT</b>✧˖°. """ + enter);
+        Game.setProgress("Credits");
+        textArt = getAsciiArt("credits");
+        
+        printDisplay();
     }
     
     

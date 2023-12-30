@@ -15,7 +15,7 @@ import gui.prototype.Reader;
 public class Monster {
     
     public boolean isDead;
-    public String ascii, name, desc;
+    public String ascii, name, desc, id;
     public int hp, attack, defense, credits, X, Y;
     public String[] attackDialogues;
     public Game game;

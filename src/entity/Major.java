@@ -13,7 +13,7 @@ import gui.prototype.Reader;
  * @author Anas Mohammad 23055727
  */
 public class Major {
-    public String name, ascii, desc;
+    public String name, ascii, desc, id;
     public int hp, attack, defense, hpScaling, atkScaling, defScaling;
     public Spells[] availableSpells = new Spells[3];
     
@@ -25,6 +25,7 @@ public class Major {
     }
     
     public void getStats (String majorName) {
+        id = majorName;
         String[] e = Reader.readMajorsFile(majorName);
         name = e[0];
         desc = e[1];

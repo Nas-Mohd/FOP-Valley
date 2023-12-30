@@ -1,14 +1,15 @@
+package entity.monsters;
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
-import gui.prototype.GUIPrototype;
+import entity.Monster;
+import gui.prototype.Game;
+import gui.prototype.Map;
 import gui.prototype.Print;
-import java.awt.Color;
-import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 import javax.imageio.ImageIO;
 
 /**
@@ -16,19 +17,21 @@ import javax.imageio.ImageIO;
  * @author chris
  */
 public class Witch extends Monster{
-    
-     public static BufferedImage img;
-    GUIPrototype game;
-    public static boolean hasSpawned, isDead;
+    public static BufferedImage img;
+    public static boolean hasSpawned;
     
     
-    public Witch(GUIPrototype e) {
+    public Witch(Game e, Map f) {
+        hasSpawned = false;
+        isDead = false;
         game = e;
+        map = f;
+        id = "witch";
         witchImage();      
-        ascii = Print.getAsciiArt("witch");
-        name = "Witch";
-        getStats("witch");
-        
+        ascii = Print.getAsciiArt(id);
+        name = "Smart Witch";
+        getStats("Witch");
+        witchSpawn();
     
     }
     
@@ -37,11 +40,23 @@ public class Witch extends Monster{
     public void witchImage() {
 
         try {
-            img = ImageIO.read(getClass().getResourceAsStream("/resource/goblin.png"));
+            img = ImageIO.read(getClass().getResourceAsStream("/resource/witch.png"));
         } catch (IOException e) {
             System.out.println("Problem with image");
         }
+    }
+    public void witchSpawn(){
+        while (!hasSpawned) {
+            // Generate random coordinates for the skeleton's position
+             Random rd = new Random();
+             X = rd.nextInt(40);
+             Y = rd.nextInt(40);
+            // Check if the randomly chosen position is valid (not a solid tile)
+            if (map.tilemap[Y][X] == 1) {
+                map.tilemap[Y][X] = 5;
+                hasSpawned = true;
+            }
+        }
     
     }
-
 }

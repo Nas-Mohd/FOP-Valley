@@ -6,7 +6,6 @@ package gui.prototype;
 
 import combat.Combat;
 import entity.Player;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -25,7 +24,6 @@ class CommandLineInputHandler implements KeyListener {
     Game window;
     String recentInput;
     Document document;
-    public static ArrayList<String> availableMajors = new ArrayList<>(Arrays.asList("ai", "csn", "mmc"));
     public static Player player;
     
     public CommandLineInputHandler(Game a) {
@@ -93,104 +91,87 @@ class CommandLineInputHandler implements KeyListener {
     
     public void checkInput(){
         System.out.println(Game.progress + " - STRING USED FOR CHECKING");
-        if (Game.progress.equals("Start Game"))
-            window.titleToMenuScreen();
-        else if (Game.progress.equals("Menu Screen")) {
-            if (recentInput.equalsIgnoreCase("new game") || recentInput.equalsIgnoreCase("new") || recentInput.equals("1"))
+        switch (Game.progress){
+            case "Start Game" -> window.titleToMenuScreen();
+            case "Menu Screen" -> {
+                if (recentInput.equalsIgnoreCase("new game") || recentInput.equalsIgnoreCase("new") || recentInput.equals("1"))
             window.createCharacterScreen();  
-            else if (recentInput.equalsIgnoreCase("help") || recentInput.equals("3")){
+                else if (recentInput.equalsIgnoreCase("help") || recentInput.equals("3")){
                 Print.showHelp();
+                }
             }
-        }
-        else if (Game.progress.equals("Help Screen1")){
-            Print.showHelp1();
-        }
-        else if (Game.progress.equals("Help Screen")){
-            window.createMenuScreen();
-        }
-
-        else if (Game.progress.equalsIgnoreCase("Create Character")){
-                System.out.println("heard input during create character");
-            if (recentInput.equalsIgnoreCase("ai")) {
-                Print.showMajorsInfo(recentInput);
-                
-                Game.setProgress("Choosing");
-                window.setMajor("ai");
+            case "Help Screen1" -> Print.showHelp1();
+            case "Help Screen" -> window.createMenuScreen();
+            case "Create Character" -> { 
+                switch (recentInput.toLowerCase()){
+                    case "ai" -> {
+                        Print.showMajorsInfo(recentInput.toLowerCase());
+                        Game.setProgress("Choosing");
+                        window.setMajor("ai");
+                    }
+                    case "se" -> {
+                        Print.showMajorsInfo(recentInput.toLowerCase());
+                        Game.setProgress("Choosing");
+                        window.setMajor("se");
+                    }
+                    case "is" -> {
+                        Print.showMajorsInfo(recentInput.toLowerCase());
+                        Game.setProgress("Choosing");
+                        window.setMajor("is");
+                    }
+                    case "mmc" -> {
+                        Print.showMajorsInfo(recentInput.toLowerCase());
+                        Game.setProgress("Choosing");
+                        window.setMajor("mmc");
+                    }
+                    case "csn" -> {
+                        Print.showMajorsInfo(recentInput.toLowerCase());
+                        Game.setProgress("Choosing");
+                        window.setMajor("csn");
+                    }
+                    default -> System.out.println("invalid input");
+                }
             }
-            else if (recentInput.equalsIgnoreCase("csn")) {
-                Print.showMajorsInfo(recentInput);
-                
-                Game.setProgress("Choosing");
-                window.setMajor("csn");
+            case "Choosing" -> {
+                if (recentInput.equals("y")){
+                    System.out.println("hi");
+                    Game.setProgress("Choosing Name");
+                    window.chooseName();
+                }
+                else if (recentInput.equals("")){
+                    System.out.println("bye");
+                    Game.setProgress("Create Character");
+                    Print.showMajors();
+                }
             }
-            System.out.println(Game.progress);
-        }              
-        else if (Game.progress.equals("Choosing")){
-            System.out.println("oop");
-            if (recentInput.equals("y")){
-                System.out.println("hi");
-                Game.setProgress("Choosing Name");
-                window.chooseName();
+            case "Choosing Name" -> {
+                if (recentInput.equals("")){
+                    Print.showMajorsInfo(Game.major);
                 
+                    Game.setProgress("Choosing");
+                } else {
+                Player.setName(recentInput);
+                window.createPlayer();
+                Print.showStory1();
+                }
             }
-                
-                
-            else if (recentInput.equals("")){
-                System.out.println("bye");
-                
-                Game.setProgress("Create Character");
-                Print.showMajors();
-               
-                
+            case "Story1" -> Print.showStory2();
+            case "Story2" -> Print.showStory3();
+            case "Story3" -> Print.showStory4();
+            case "Story4" -> Print.showStory();
+            case "Story" -> window.createMap();
+            case "Starting Combat" -> {
+                if (recentInput.equalsIgnoreCase("Fight") || recentInput.equals("1")) {
+                    Combat.startCombat();
+                    Game.setProgress("In Combat");
+                } else if (recentInput.equals("")) {
+                    window.hideStuff();
+                    window.showMap();
+                    Game.setProgress("Map");
+                }
             }
-        }
-
-        
-        else if (Game.progress.equals("Choosing Name")){
-            if (recentInput.equals("")){
-                Print.showMajorsInfo(Game.major);
-                
-                Game.setProgress("Choosing");
-            } else {
-            Player.setName(recentInput);
-            //window.createMap();
-            window.createPlayer();
-            Print.showStory1();
-            }
-        }
-        else if (Game.progress.equals("Story1")){
-            Print.showStory2();
-        }
-        else if (Game.progress.equals("Story2")){
-            Print.showStory3();
-        }
-        else if (Game.progress.equals("Story3")){
-            Print.showStory4();
-        }
-        else if (Game.progress.equals("Story4")){
-            Print.showStory();
-        }
-        else if (Game.progress.equals("Story")){
-            window.createMap();
-        }
-        
-        else if (Game.progress.equals("Starting Combat")) {
-            if (recentInput.equalsIgnoreCase("Fight")) {
-                System.out.println("heard fight");
-                Combat.startCombat();
-                Game.setProgress("In Combat");
-            } else if (recentInput.equals("")) {
-                
-                window.hideStuff();
-                window.showMap();
-                window.textArtArea.setForeground(Color.white);
-                
-                Game.setProgress("Map");
-            }
-        }
-        
-        else if (Game.progress.equals("In Combat")) {
-            if (recentInput.equalsIgnoreCase("attack") || recentInput.equals("1")) {
+            case "In Combat" -> {
+                if (recentInput.equalsIgnoreCase("attack") || recentInput.equals("1")) {
                 Game.setProgress("Attacking");
                 Combat.playerAction(recentInput);
             }
@@ -211,31 +192,54 @@ class CommandLineInputHandler implements KeyListener {
                      Game.setProgress("Casting Spell");
                      Combat.playerAction(recentInput);
                 }
-                   
-        }
-        else if (Game.progress.equals("Displaying Effects") && recentInput.equals("")) {
-            Game.setProgress("Displaying Monster");
-            Combat.enemyAttacks();
-        }
-        else if (Game.progress.equals("Displaying Monster") && recentInput.equals("")) {
-            Game.setProgress("In Combat");
-            Combat.startCombat();
-        }
-        
-        else if (Game.progress.equals("Game Win") || Game.progress.equals("Game Lose")) {
+            }
+            case "Displaying Effects" ->{
+                if (recentInput.equals("")){
+                    Game.setProgress("Displaying Monster");
+                    Combat.enemyAttacks();
+                }
+            }
+            case "Displaying Monster" -> {
+                if (recentInput.equals("")){
+                    Game.setProgress("In Combat");
+                    Combat.startCombat();
+                }
+            }
+            case "Game Win" -> {
+                Print.credits();
+            }
+            case "Game Lose" -> {
+                Print.credits();
+            }
+            case "Running Successful" -> {
+                if (recentInput.equals("")){
+                window.hideStuff();
+                window.showMap();
+            
+                Game.setProgress("Map");
+                }
+            }
+            case "Level Up" -> {
+                window.hideStuff();
+                window.showMap();
+            
+                Game.setProgress("Map");
+            }
+            case "Epilogue0" -> Print.epilogue1();
+            case "Epilogue1" -> Print.epilogue2();
+            case "Epilogue2" -> {
+                if (recentInput.equalsIgnoreCase("y") || recentInput.equalsIgnoreCase("yes"))
+                    Print.epilogue3y();
+                else if (recentInput.equalsIgnoreCase("n")|| recentInput.equalsIgnoreCase("no"))
+                    Print.epilogue3n();
+            }
+            case "Epilogue3" -> Print.epilogue4();
+            case "Credits" ->{
                 window.hideStuff();
                 window.startGame();
             }
-        else if (Game.progress.equals("Running Successful") && recentInput.equals("")){
-            window.hideStuff();
-            window.showMap();
-            window.textArtArea.setForeground(Color.white);
-            
-            Game.setProgress("Map");
+            default -> {}
         }
-        
+    }
 }
-}
-
-
-
+ 

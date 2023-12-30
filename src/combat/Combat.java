@@ -4,13 +4,15 @@
  */
 package combat;
 
-import entity.monsters.Goblin;
 import entity.Monster;
 import entity.Player;
-import entity.monsters.Harpy;
 import gui.prototype.Game;
 import gui.prototype.Print;
+import gui.prototype.SaveDB;
+import java.sql.SQLException;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,6 +30,7 @@ public class Combat {
     }
     
     public static void initiateCombat(int monster, Player p) {
+        
         String monsterName;
         player = p;
         
@@ -39,6 +42,26 @@ public class Combat {
             case 3 -> {
                 monsterName = "harpy";
                 enemy = Game.harpy;
+            }
+            case 4 -> {
+                monsterName = "bony boi";
+                enemy = Game.skeleton;
+            }
+            case 5 -> {
+                monsterName = "witch";
+                enemy = Game.witch;
+            }
+            case 6 -> {
+                monsterName = "ogre";
+                enemy = Game.ogre;
+            }
+            case 7 -> {
+                monsterName = "gnoll";
+                enemy = Game.gnoll;
+            }
+            case 8 -> {
+                monsterName = "dragon";
+                enemy = Game.dragon;
             }
             default -> {
                 monsterName = "";
@@ -65,13 +88,19 @@ public class Combat {
                 enemy.isDead = true;
                 enemy.despawn();
                 player.levelUp();
-                Game.checkWin();
-                if (Game.gameWon)
-                    Print.gameWin();
+                if (Game.gameWon()){
+                    try {
+                        SaveDB.deletePlayerAndMonsters(Game.p.id);
+                    } catch (SQLException ex) {
+                        System.out.println("some error lmao");
+                    }
+                    Print.epilogue0(enemy);
+                    
+                }
+
                 else{
-                    window.hideStuff();
-                    window.showMap();
-                    Game.setProgress("Map");
+                    Game.setProgress("Level Up");
+                    Print.levelUp(enemy);
                 }
                     
             }
@@ -80,12 +109,19 @@ public class Combat {
     
     public static void playerAttacks() {
         int dmg, dif = player.attack - enemy.defense;
+        int x, y;
+        x = Math.abs(dif/2);
+        y = player.attack/2;
+        if (x==0)
+            x=1;
+        if (y==0)
+            y=1;
         Random rd = new Random();
         Game.setProgress("Attacking");
-        if (dif < 1) {
-            dmg = rd.nextInt(8);
-        } else
-            dmg = dif + rd.nextInt(9);
+        if (dif <= 0) 
+            dmg = rd.nextInt(x) + rd.nextInt(y);  
+         else
+            dmg = dif + rd.nextInt(y/2, y);
         
         enemy.hp -= dmg;
         
@@ -94,12 +130,20 @@ public class Combat {
     
     public static void enemyAttacks() {
         int dmg = 0, dif = enemy.attack - player.defense;
+        int x, y;
+        x = Math.abs((dif/2) + 1);
+        y = enemy.attack/2;
+        if (x==0)
+            x=1;
+        if (y==0)
+            y=1;
         if (enemy.hp > 0){
            Random rd = new Random();
-            if (dif < 1)
-                dmg = rd.nextInt(5);
+            if (dif <= 0) {
+                dmg = rd.nextInt(y) + rd.nextInt(x);
+            }
             else
-                dmg = dif + rd.nextInt(6);
+                dmg = dif + rd.nextInt(y/2, y);
         
             if (isBlocking) {
                 dmg = 0;
@@ -108,7 +152,7 @@ public class Combat {
         
         if (isDefending) {
             isDefending = false;
-            player.defense = Player.chosenMajor.defense;
+            player.defense = Player.chosenMajor.defense + Player.chosenMajor.defScaling*player.credits;
         } 
         }
 
@@ -190,8 +234,14 @@ public class Combat {
         switch (spell.type) {
             case "status" -> {
                 Game.setProgress("Status Spell");
+                if (spell.multiplier < 1){
                 enemy.attack = (int) (enemy.attack * spell.multiplier);
-                enemy.defense = (int) (enemy.defense * spell.multiplier);
+                enemy.defense = (int) (enemy.defense * spell.multiplier);                    
+                }
+                else if (spell.multiplier > 1){
+                    player.attack = (int) (player.attack * spell.multiplier);
+                    player.defense = (int) (player.defense * spell.multiplier);
+                }
                 spell.countdown = spell.cd + 1;
                 Print.displayEffects((int)(spell.multiplier));
             }
@@ -209,6 +259,19 @@ public class Combat {
                 isBlocking = true;
                 spell.countdown = spell.cd + 1;
                 Print.displayEffects(0);
+            }
+            case "heal" -> {
+                Game.setProgress("Heal Spell");
+                spell.countdown = spell.cd + 1;
+                int maxHP = Player.chosenMajor.hp + (Player.chosenMajor.hpScaling*player.credits);
+                int heal = (int) (maxHP * spell.multiplier);
+                player.hp += heal;
+                if (player.hp > maxHP){
+                    int surplus = player.hp - maxHP;
+                    heal -= surplus;
+                    player.hp = maxHP;
+                }
+                Print.displayEffects(heal);
             }
             
             default -> {
